@@ -1,0 +1,73 @@
+#%RAML 1.0
+title: Utilidades
+version: v1
+baseUri: http://api.mtis.org
+types:
+  Error:
+    type: object
+    properties:
+      Codigo: integer
+      Mensaje: string
+
+/Utilidades:
+  /validarNIF:
+    get:
+      description: Valida el NIF de un usuario y devuelve cierto si es correcto o falso si no lo es
+      headers:
+        Access-Control-Allow-Origin:
+          example: |
+             *
+      queryParameters:
+        DNI: string
+        RestKey: string
+      responses:
+        200:
+          headers:
+            Access-Control-Allow-Origin:
+              example: |
+                *
+          description: Validacion correcta
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: NIF invalido
+          body:
+            application/json:
+              type: Error
+
+  /validarNAFSS:
+    get:
+      description: valida el NAFSS de un usuario
+      queryParameters:
+        DNI: string
+        RestKey: string
+      responses:
+        200:
+          description: Validacion correcta
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: NAFSS invalido
+          body:
+            application/json:
+              type: Error
+
+  /validarIBAN:
+    get:
+      description: Valida el IBAN de un usuario
+      queryParameters:
+        DNI: string
+        RestKey: string
+      responses:
+        200:
+          description: Validacion correcta
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: IBAN invalido
+          body:
+            application/json:
+              type: Error

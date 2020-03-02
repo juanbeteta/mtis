@@ -1,0 +1,88 @@
+#%RAML 1.0
+title: Seguridad
+version: v1
+baseUri: http://api.mtis.org
+types:
+  Error:
+    type: object
+    properties:
+      Codigo: integer
+      Mensaje: string
+
+/Seguridad:
+  /validarUsuario:
+    get:
+      description: Validar si el usuario pertenece a una sala pasando el DNI
+      queryParameters:
+        DNI: string
+        Sala: string
+        RestKey: string
+      responses:
+        200:
+          description: Peticion correcta
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: Ha habido un error en la petición
+          body:
+            application/json:
+              type: Error
+  /obtenerNiveles:
+    get:
+      description: Obtiene todos los niveles que un usuario puede tener
+      queryParameters:
+        DNI: string
+        RestKey: string
+      responses:
+        200:
+          description: Peticion correcta
+          body:
+            application/json:
+              type: array
+              items: string
+              minItems: 0
+              uniqueItems: false
+        400:
+          description: Ha habido un error en la peticion
+          body:
+            application/json:
+              type: Error
+
+  /asignarPermisos:
+     post:
+       description: Asigna permisos de una sala a un usuario
+       queryParameters:
+         DNI: string
+         Sala: string
+         RestKey: string
+       responses:
+         200:
+           description: Peticion correcta
+           body:
+             application/json:
+               type: boolean
+         400:
+           description: Ha habido un error en la peticion
+           body:
+             application/json:
+               type: Error
+
+  /eliminarPermisos:
+    post:
+      description: Elimina permisos de una sala a un usuario
+      queryParameters:
+        DNI: string
+        Sala: string
+        RestKey: string
+      responses:
+        200:
+          description: Peticion correcta
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: Ha habido un error en la peticion
+          body:
+            application/json:
+              type: Error

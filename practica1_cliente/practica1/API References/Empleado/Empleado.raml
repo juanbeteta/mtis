@@ -1,0 +1,136 @@
+#%RAML 1.0
+title: Seguridad
+version: v1
+baseUri: http://api.mtis.org
+types:
+  Error:
+    type: object
+    properties:
+      Codigo: integer
+      Mensaje: string
+  Empleado:
+    type: object
+    properties:
+      DNI:
+        type: string
+        minLength: 0
+        maxLength: 10
+        required: true
+      Nombre:
+        type: string
+        minLength: 0
+        maxLength: 50
+        required: false
+      Apellidos:
+        type: string
+        minLength: 0
+        maxLength: 50
+        required: false
+      Direccion:
+        type: string
+        minLength: 0
+        maxLength: 200
+        required: false
+      Poblacion:
+        type: string
+        minLength: 0
+        maxLength: 20
+        required: false
+      Telefono:
+        type: string
+        minLength: 0
+        maxLength: 10
+        required: false
+      Email:
+        type: string
+        minLength: 0
+        maxLength: 50
+        required: false
+      Fecha_nacimiento:
+        type: string
+        format: date-only
+        required: false
+      NSS:
+        type: string
+        minLength: 0
+        maxLength: 50
+        required: false
+      IBAN:
+        type: string
+        minLength: 0
+        maxLength: 50
+        required: false
+
+/Empleado:
+  /nuevo:
+    post:
+      description: Crea nuevo empleado
+      queryParameters:
+        RestKey: string
+      body:
+        application/json:
+          type: Empleado
+      responses:
+        200:
+          description: Empleado añadido correctamente
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: Error
+          body:
+            application/json:
+              type: Error
+  /borrar:
+    post:
+        description: Borrar empleado
+        queryParameters:
+          RestKey: string
+          DNI: string
+        responses:
+          200:
+            description: Empleado eliminado correctamente
+            body:
+              application/json:
+                type: boolean
+          400:
+            description: Error
+            body:
+              application/json:
+                type: Error
+  /modificar:
+    put:
+      description: Modificar empleado
+      queryParameters:
+        RestKey: string
+      body:
+        application/json:
+          type: Empleado
+      responses:
+        200:
+          description: Empleado modificado correctamente
+          body:
+            application/json:
+              type: boolean
+        400:
+          description: Error
+          body:
+            application/json:
+              type: Error
+  /consultar:
+    get:
+      description: Consultar empleado
+      queryParameters:
+        RestKey: string
+        DNI: string
+      responses:
+        200:
+          description: Empleado consultado correctamente
+          body:
+            application/json:
+              type: Empleado
+        400:
+          description: Error
+          body:
+            application/json:
+              type: Error

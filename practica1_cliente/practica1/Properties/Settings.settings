@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="practica1.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="practica1_Validar_ValidacionService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:9080/Practica1/services/ValidacionService/</Value>
+    </Setting>
+    <Setting Name="practica1_Seguridad_SeguridadService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:9080/Practica1/services/SeguridadService/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
